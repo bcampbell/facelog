@@ -115,6 +115,54 @@ function scrapeLink(art) {
 }
 
 
+// "1.4k Sad" => [1400,"sad"]
+// "" => null
+function parseReact(s) {
+    var pat = /\s*([\d.]+)([kM]?)\s*(.*)\s*/g
+    var m = pat.exec(s)
+    if (m===null) {
+        return null;
+    }
+
+    var n = Number(m[1]);
+    var unit = m[2];
+    if(unit=="k") {
+        n = n*1000;
+    } else if (unit=="M") {
+        n = n*1000000;
+    }
+    var which = m[3].toLowerCase();
+
+    console.log("REACT: '" + s + "' -> " + n + " " + which);
+
+    return [n,which];
+}
+
+
+function scrapeReacts(art) {
+    var reacts = {
+        'like':0,
+        'love':0,
+        'haha':0,
+        'wow':0,
+        'sad':0,
+        'angry':0
+    }
+
+    var icons = art.querySelectorAll('span[aria-label="See who reacted to this"] a[aria-label]')
+    for (var i=0; i<icons.length; ++i) {
+        var txt = icons[i].getAttribute("aria-label");  // "1.4k Sad" etc
+        var r = parseReact(txt);
+        if( r !== null ) {
+            reacts[r[1]] = r[0];
+        }
+    }
+
+    return reacts;
+}
+
+
+// find the unique id for this post/entry/whatever
 function scrapeID( art ) {
     var inp = art.querySelector('form.commentable_item input[name="ft_ent_identifier"]');
     if (!inp) {
@@ -129,7 +177,10 @@ function scrape(art) {
     var content = art.querySelector('.userContent');
     var timeStamp = art.querySelector('abbr[data-utime]');
 
-    var ut = timeStamp.getAttribute("data-utime")
+    var ut = "0";
+    if (timeStamp) {
+        ut = timeStamp.getAttribute("data-utime");
+    }
 
     return {
         root: art,
@@ -137,7 +188,8 @@ function scrape(art) {
         posted: ut,
         desc: heading ? heading.textContent : "",
         txt: content ? content.textContent : "",
-        link: scrapeLink(art)
+        link: scrapeLink(art),
+        reacts: JSON.stringify(scrapeReacts(art))
     };
 }
 
@@ -158,7 +210,7 @@ function present(details) {
 
     var contentDiv = document.createElement('div');
     contentDiv.classList.add('facelog-content');
-    contentDiv.textContent = details.id + " -- " + posted + " -- " + details.txt;
+    contentDiv.textContent = details.id + " -- " + posted + " -- " + details.txt + " -- " + details.reacts;
     detailsDiv.appendChild(contentDiv);
 
     if (details.link!=null) {
