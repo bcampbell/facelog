@@ -1,0 +1,21 @@
+{
+
+  "description": "logs all facebook news items",
+  "manifest_version": 2,
+  "name": "FaceLog",
+  "version": "1.0",
+  "homepage_url": "http://scumways.com",
+  "icons": {
+    "48": "icons/facelog-48.png"
+  },
+
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.facebook.com/*"],
+      "js": ["facelog.js"],
+      "css": ["content.css"]
+    }
+  ]
+
+}

@@ -1,0 +1,38 @@
+.facelog-details {
+    margin-left: 1em;
+    overflow: clip;
+}
+
+.facelog-content {
+    background: #ccf;
+}
+
+.facelog-links {
+    border: 1px solid black;
+    padding: 3px;
+}
+
+
+.facelog-item {
+    margin-bottom: 1em;
+}
+
+#myDivId {
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+    left: 0;
+    width: 3em;
+    height: 100%;
+    background-color: #eee;
+}
+
+#myDivId.facelog-is-big {
+    width: 30em;
+}
+
+#myDivId ul {
+    overflow: auto;
+    border: 1px solid black;
+    height: 100%;
+}

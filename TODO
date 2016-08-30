@@ -1,0 +1,7 @@
+better handling of hyperfeeds (eg shared link with multiple content)
+log number of likes/comments etc
+only log items which are visible (ie not posted which are preloaded, but offscreen)
+add a backend (background page?) to stash posts and coordinate stuff
+add a gui for browsing logged posts
+export to csv
+
