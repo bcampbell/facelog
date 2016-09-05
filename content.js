@@ -152,7 +152,7 @@ function scrape(art) {
         desc: heading ? heading.textContent : "",
         txt: content ? content.textContent : "",
         link: scrapeLink(art),
-        reacts: JSON.stringify(scrapeReacts(art))
+        reacts: scrapeReacts(art)
     };
 }
 

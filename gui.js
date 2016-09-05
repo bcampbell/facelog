@@ -73,6 +73,8 @@ function updatePost(id,post) {
 
 }
 
+
+
 // initialise
 chrome.storage.local.get(null, function(items) {
     for (key in items) {
