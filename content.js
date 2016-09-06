@@ -131,6 +131,7 @@ function scrapeID( art ) {
 
 
 function scrape(art) {
+    var now = Date.UTC();
     var id = scrapeID(art);
     if (id===null) {
         // TODO: could do more here?
@@ -145,14 +146,18 @@ function scrape(art) {
         ut = timeStamp.getAttribute("data-utime");
     }
 
+    var link = scrapeLink(art);
+    var reacts = scrapeReacts(art);
+
     return {
         root: art,
         id: id,
+        seen: now,  // milliseconds
         posted: ut,
         desc: heading ? heading.textContent : "",
         txt: content ? content.textContent : "",
-        link: scrapeLink(art),
-        reacts: scrapeReacts(art)
+        link: link,
+        reacts: reacts
     };
 }
 
@@ -202,13 +207,14 @@ function scan(nod) {
 }
 
 
+// store scraped posts in storage, indexed by post id.
 function stash(arts) {
     var foo = {};
     for( var i=0; i<arts.length; i++) {
         var art = arts[i];
         foo[art.id] = art;
     }
-    chrome.storage.local.set(foo, function() {});
+    chrome.storage.local.set(foo); 
 }
 
 

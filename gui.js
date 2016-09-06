@@ -7,72 +7,66 @@ clearButton.addEventListener("click", function() {
 
 
 function present(post) {
-    var li = document.createElement( 'li' );
-    li.classList.add('facelog-item');
-    var h5 = document.createElement( 'h5' );
-    h5.textContent = post.desc;
-    li.appendChild(h5);
+   var tmpl = '<td>{{posted}}</td><td>{{desc}}</td><td class="w">{{txt}}</td><td><a href="{{link_url}}">{{link_url}}</a></td><td class="w">{{link_title}}</td><td class="w">{{link_desc}}</td><td>{{like}}</td><td>{{love}}</td><td>{{haha}}</td><td>{{wow}}</td><td>{{sad}}</td><td>{{angry}}</td>\n';
 
+    var reacts = post.reacts;
+    var link = (post.link!==null) ? post.link : {url:"",title:"",desc:""};
+    var params = {
+        id: post.id,
+        posted: new Date(post.posted*1000).toISOString(),
+        desc: post.desc,
+        txt: post.txt,
+        link_url: link.url,
+        link_title: link.title,
+        link_desc: link.desc,
+        like: reacts.like,
+        love: reacts.love,
+        haha: reacts.haha,
+        wow: reacts.wow,
+        sad: reacts.sad,
+        angry: reacts.angry
+    };
 
-    var postDiv = document.createElement('div');
-    postDiv.classList.add('facelog-post');
-
-    var posted = new Date(post.posted*1000).toISOString();
-
-
-    var contentDiv = document.createElement('div');
-    contentDiv.classList.add('facelog-content');
-    contentDiv.textContent = post.id + " -- " + posted + " -- " + post.txt + " -- " + post.reacts;
-    postDiv.appendChild(contentDiv);
-
-    if (post.link!=null) {
-        var l = post.link;
-        var linksDiv = document.createElement('div');
-        linksDiv.classList.add('facelog-links');
-        var link = document.createElement('a');
-        link.textContent = l.title!="" ? l.title : l.url;
-        link.href= l.url;
-        linksDiv.appendChild(link);
-        postDiv.appendChild(linksDiv);
-        if (l.desc!= "" ) {
-            var desc = document.createElement('div');
-            desc.innerText = l.desc;
-            linksDiv.appendChild(desc);
-        }
-    }
-
-    li.appendChild(postDiv);
-
-    return li;
+    return Mustache.to_html(tmpl,params);
 }
 
 
 
 function updatePost(id,post) {
     var old = document.getElementById("post-"+id);
-
     if( post === undefined ) {
-        console.log("byebye ", id);
         if (old !== null) {
-            console.log("byebye ", old);
             postList.removeChild(old);
         }
         return;
     }
 
-
-    var li = present(post);
-    li.id = "post-"+post.id;
+    var tr = document.createElement( 'tr' );
+    tr.innerHTML = present(post);
+    tr.id = "post-"+post.id;
     if(old !== null ) {
-        console.log("replace " +id);
-        postList.replaceChild(li,old);
+        postList.replaceChild(tr,old);
     } else {
-        console.log("new " + id);
-        postList.appendChild(li);
+        postList.appendChild(tr);
     } 
 
 }
 
+
+// show bytes used etc
+function updateInfo() {
+    chrome.storage.local.getBytesInUse(null, function(bytesInUse) {
+        var infDiv = document.getElementById("info");
+
+        var quota = chrome.storage.local.QUOTA_BYTES;
+        var tmpl = 'Storing {{bytesInUse}} bytes ({{perc}}% full)';
+        var html = Mustache.to_html(tmpl, {
+            bytesInUse:bytesInUse,
+            quota:quota,
+            perc:((bytesInUse*100)/quota).toFixed(1) });
+        infDiv.innerHTML = html;
+    });
+}
 
 
 // initialise
@@ -81,6 +75,7 @@ chrome.storage.local.get(null, function(items) {
         var post = items[key];
         updatePost(post.id, post);
     }
+    updateInfo();
 });
 
 // monitor ongoing changes
@@ -90,6 +85,7 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
         var post = storageChange.newValue;
         updatePost(key, post);
     }
+    updateInfo();
 });
 
 
