@@ -5,14 +5,13 @@
 function saveCSV() {
     chrome.storage.local.get(null, function(items) {
         rows = [];
-        headings="id, posted, desc, txt, link.url, link.title, link.desc, reacts.like, reacts.love, reacts.haha, reacts.wow, reacts.sad, reacts.angry";
+        headings="id,posted,desc,txt,link_url,link_title,link_desc,like,love,haha,wow,sad,angry";
         rows.push(headings);
         for (key in items) {
             var post = items[key];
             var link = post.link;
-            if (link===null) { link = {}; }
+            if (link===null) { link = {url:"", title:"", desc:""}; }
             var reacts = post.reacts;
-            if (reacts===null) { reacts = {}; }
             var posted = new Date(post.posted*1000).toISOString();
             var row=[
                 post.id,
@@ -30,7 +29,7 @@ function saveCSV() {
                 reacts.angry
             ];
             row = row.map(function(fld) {
-                return (fld===undefined) ? "" : escapeCSV(fld);
+                return escapeCSV(fld.toString());
             });
             rows.push( row.join(",") );
         }
@@ -44,11 +43,12 @@ function saveCSV() {
         document.body.appendChild(a);
         a.click();
         delete a;
-
+        // TODO: show message confirming export was performed
     });
 }
 
 function escapeCSV(fld) {
+    console.log(fld);
     var cooked = fld.replace(/"/g, '""');
     if (cooked.search(/[",\n]/g) >= 0) {
         return '"' + cooked + '"';
