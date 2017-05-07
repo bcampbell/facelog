@@ -212,7 +212,8 @@ function stash(arts) {
     var foo = {};
     for( var i=0; i<arts.length; i++) {
         var art = arts[i];
-        foo[art.id] = art;
+        var key = "post-" + art.id;
+        foo[key] = art;
     }
     chrome.storage.local.set(foo); 
 }

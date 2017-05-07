@@ -71,8 +71,12 @@ function updateInfo() {
 
 // initialise
 chrome.storage.local.get(null, function(items) {
-    for (key in items) {
+    for (var key in items) {
+        if (key.indexOf("post-") != 0) {
+            continue;
+        }
         var post = items[key];
+        console.log( key,post);
         updatePost(post.id, post);
     }
     updateInfo();
@@ -80,10 +84,19 @@ chrome.storage.local.get(null, function(items) {
 
 // monitor ongoing changes
 chrome.storage.onChanged.addListener(function(changes, namespace) {
-    for (key in changes) {
+    for (var key in changes) {
+        if (key.indexOf("post-") != 0) {
+            continue;
+        }
         var storageChange = changes[key];
         var post = storageChange.newValue;
-        updatePost(key, post);
+        if (!post) {
+            // deleting - need to extract id from key (ie strip "post-" prefix)
+            var foo = key.replace(/^post-/, '');
+            updatePost(foo, post);
+        } else {
+            updatePost(post.id, post);
+        }
     }
     updateInfo();
 });
