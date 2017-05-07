@@ -5,4 +5,9 @@ chrome.browserAction.onClicked.addListener( function() {
 });
 
 
+// has the extension been configured?
+if (!localStorage.getItem("conf")) {
+    chrome.tabs.create({url: "conf.html"});
+}
+
 

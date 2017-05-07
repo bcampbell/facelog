@@ -12,7 +12,7 @@ html {
 body {
     line-height: 1.5;
     color: #444;
-    margin: auto;
+    margin: 2rem;
 /*    font-family: 'Source Sans Pro', sans-serif; */
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
 }
@@ -71,17 +71,24 @@ img {
 
 label {
     font-weight: bold;
-    /*display: block; */
+    display: block;
 }
 
-.checkbox label {
+input {
+    display: block;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    display: inline-block;
+}
+
+input[type="checkbox"] + label,
+input[type="radio"] + label {
   display: inline-block;
   font-weight: normal;
 }
 
-input[type="checkbox"] {
-    margin-left: 0;
-}
 
 
 input,textarea {
@@ -258,3 +265,11 @@ border-radius: 4px;
 box-shadow: 2px 2px 8px #888;
 }
 
+.page-textual {
+    width: 40rem;
+    margin: auto;
+}
+
+.page-data {
+    margin: auto;
+}
