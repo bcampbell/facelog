@@ -221,7 +221,6 @@ function stash(arts) {
 
 /*****************/
 
-
 // set up to scan any new stuff added to the page
 // (ie pick up new items as they stream in, probably because
 // the user is scrolling down)
@@ -242,8 +241,18 @@ if(contentArea!=null) {
 }
 
 
+// sometime (eg during redirects) we'll get a bodyless doc
+var bod = document.querySelector("body");
+if (bod) {
+    obs.observe(bod, { childList: true, subtree: true, attributes: false, characterData: false });
+}
 
-obs.observe(document.body, { childList: true, subtree: true, attributes: false, characterData: false });
+
+
+
+
+
+
 
 
 
