@@ -53,6 +53,7 @@ function scrapeLink(art) {
             return null;
         }
 
+        // TODO: nextSibling sometimes null...
         return {
             url:    urlFromLink(a),
             title:  a.textContent,
