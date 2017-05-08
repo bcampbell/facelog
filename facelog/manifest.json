@@ -9,6 +9,7 @@
     "48": "icons/facelog-48.png"
   },
   "permissions": [
+    "http://*/",
     "storage"
   ],
   "background": {

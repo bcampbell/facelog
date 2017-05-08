@@ -4,6 +4,11 @@ clearButton.addEventListener("click", function() {
     chrome.storage.local.clear();
 } , false);
 
+var uploadButton = document.getElementById("upload-button");
+uploadButton.addEventListener("click", function() {
+    dumpToServer();
+}, false);
+
 
 
 function present(post) {
@@ -76,7 +81,7 @@ chrome.storage.local.get(null, function(items) {
             continue;
         }
         var post = items[key];
-        console.log( key,post);
+        //console.log( key,post);
         updatePost(post.id, post);
     }
     updateInfo();
@@ -101,5 +106,36 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
     updateInfo();
 });
 
+function dumpToServer() {
+    console.log("upload...");
+    chrome.storage.local.get(null, function(items) {
+        var ents = [];
+        for (var key in items) {
+            if (key.indexOf("post-") != 0) {
+                continue;
+            }
+            var post = items[key];
+            ents.push(post);
+        }
+
+
+
+        var req = new XMLHttpRequest();
+        req.open('POST', 'http://localhost:8080/up', true);
+        req.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        req.addEventListener("load", function(ev) {
+            console.log("sent: ", ev);
+        });
+        req.addEventListener("error", function(ev) {
+            console.log("poop: ", ev);
+        });
+        var dat = {"ents": ents};
+        console.log("send ",dat);
+        req.send( JSON.stringify(dat) );
+
+
+    });
+
+}
 
 
