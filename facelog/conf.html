@@ -1,15 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Facelog</title>
+    <title>Facelog - set up</title>
         <link href="gui.css" rel="stylesheet"/>
   </head>
 <body>
 <div class="page-textual">
 <h1>Welcome to Facelog</h1>
-<div>welcome message goes here...</div>
-<form id="form-register" action="#">
-  <label>post code</label>
+  <p>
+Thank you for volunteering to donate your facebook viewing data.
+  </p>
+  <p>
+Facelog is a browser extension which logs the posts you view in facebook, and
+uploads them for analysis by the researchers at the Centre for the Study of Media, Communication and Power at Kings College London.
+  </p>
+  <p>
+You can find out more about this project here (LINK GOES HERE).
+  </p>
+
+
+<div>
+ Do you have an Ipsos MORI number?
+ <a class="btn btn-lg" href="#reg-ipsos">yes</a>
+ <a class="btn btn-lg" href="#reg-general">no</a>
+</div>
+
+<div id="reg-ipsos" class="reg-opt">
+<form id="form1" action="#">
+  <label for="ipsosmori">Your Ipsos MORI number</label>
+  <input required id="ipsosmori" name="ipsosmori" value="" />
+  <input type="submit" value="enter" />
+</form>
+ </div>
+
+<div id="reg-general" class="reg-opt">
+<form id="form2" action="#">
+  <label>country</label>
+  <input type="text" name="country" />
+
+  <label>post code (if in UK)</label>
   <input type="text" name="postcode" />
 
   <label>age</label>
@@ -25,7 +54,18 @@
   <input type="submit" value="enter" />
 </form>
 
-<div> privacy statement goes here...</div>
+<p> privacy statement goes here...</p>
+<p>
+Most importantly:
+<ul>
+  <li>Your data will not be passed on to anyone else</li>
+  <li>Your data will not be linked with your name or any other details beyond the broad demographic information you supply here</li>
+</ul>
+</p>
+</div>
+
+</div>
+
 </div>
 <script type="text/javascript" src="conf.js"></script>
 </body>

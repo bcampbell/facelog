@@ -4,7 +4,7 @@
 
 html {
     /* our base size */
-    font-size: 18px;
+    font-size: 24px;
 }
 
 * { box-sizing: border-box;}
@@ -273,3 +273,21 @@ box-shadow: 2px 2px 8px #888;
 .page-data {
     margin: auto;
 }
+
+
+/* conf page */
+
+#reg-ipsos,
+#reg-general {
+    display: none;
+}
+
+#reg-ipsos:target {
+    display: block;
+}
+
+#reg-general:target {
+    display: block;
+}
+
+
