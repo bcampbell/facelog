@@ -10,7 +10,8 @@
   },
   "permissions": [
     "http://*/",
-    "storage"
+    "storage",
+    "alarms"
   ],
   "background": {
     "scripts": ["background.js"],

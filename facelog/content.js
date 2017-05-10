@@ -151,7 +151,7 @@ function scrape(art) {
     var reacts = scrapeReacts(art);
 
     return {
-        root: art,
+        //root: art,
         id: id,
         seen: now,  // milliseconds
         posted: ut,

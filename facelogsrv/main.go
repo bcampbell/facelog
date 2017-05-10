@@ -26,5 +26,6 @@ func upHandler(w http.ResponseWriter, req *http.Request) {
 
 func main() {
 	http.HandleFunc("/up", upHandler)
+	http.HandleFunc("/reg", regHandler)
 	http.ListenAndServe(":8080", nil)
 }

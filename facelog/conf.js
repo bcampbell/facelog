@@ -22,17 +22,43 @@ function regUser(details) {
 
 form1.addEventListener("submit", function(ev) {
     ev.preventDefault();
-    regUser({ "ipsosmori": form1.ipsosmori.value });
+    var user = {
+        "ipsosmori": form1.ipsosmori.value
+    };
+    chrome.runtime.getBackgroundPage( function(bg) {
+        var onErr = function(errmsg) {
+            console.log("ERROR: " + errmsg);
+            // TODO: show on form
+        };
+        var onSuccess = function() {
+            console.log("success");
+            // TODO: close tab here!
+        };
+
+        bg.registerUser(user, onSuccess, onErr );
+    });
 }, false);
 
 form2.addEventListener("submit", function(ev) {
     ev.preventDefault();
 
-    regUser({
+    var user = {
         "country": form2.country.value,
         "postcode": form2.postcode.value,
         "age": form2.age.value,
         "gender": form2.gender.value,
+    };
+
+    chrome.runtime.getBackgroundPage( function(bg) {
+        var onErr = function(errmsg) {
+            console.log("ERROR: " + errmsg);
+            // TODO: show on form
+        };
+        var onSuccess = function() {
+            console.log("success");
+            // TODO: close tab here!
+        };
+        bg.registerUser(user, onSuccess, onErr );
     });
 }, false);
 
