@@ -6,63 +6,75 @@
   </head>
 <body>
 <div class="page-textual">
-<h1>Welcome to Facelog</h1>
-  <p>
-Thank you for volunteering to donate your facebook viewing data.
-  </p>
-  <p>
-Facelog is a browser extension which logs the posts you view in facebook, and
-uploads them for analysis by the researchers at the Centre for the Study of Media, Communication and Power at Kings College London.
-  </p>
-  <p>
-You can find out more about this project here (LINK GOES HERE).
-  </p>
-
-
-<div>
- Do you have an Ipsos MORI number?
- <a class="btn btn-lg" href="#reg-ipsos">yes</a>
- <a class="btn btn-lg" href="#reg-general">no</a>
-</div>
-
-<div id="reg-ipsos" class="reg-opt">
-<form id="form1" action="#">
-  <label for="ipsosmori">Your Ipsos MORI number</label>
-  <input required id="ipsosmori" name="ipsosmori" value="" />
-  <input type="submit" value="enter" />
-</form>
- </div>
-
-<div id="reg-general" class="reg-opt">
-<form id="form2" action="#">
-  <label>country</label>
-  <input type="text" name="country" />
-
-  <label>post code (if in UK)</label>
-  <input type="text" name="postcode" />
-
-  <label>age</label>
-  <input type="number" name="age" />
-
-  <label>Gender</label>
-  <input id="gender_m" type="radio" name="gender" checked value="m"/>
-  <label for="gender_m">male</label>
-  <input id="gender_f" type="radio" name="gender" value="f"/>
-  <label for="gender_f">female</label>
-
-
-  <input type="submit" value="enter" />
-</form>
-
-<p> privacy statement goes here...</p>
+<h1>Facelog Chrome Extension</h1>
 <p>
-Most importantly:
-<ul>
-  <li>Your data will not be passed on to anyone else</li>
-  <li>Your data will not be linked with your name or any other details beyond the broad demographic information you supply here</li>
-</ul>
+The FaceLog Chrome Extension is part of a research project being conducted
+by the Centre for the Study of Media, Communication and Power at Kings
+College London, into how people use social media, such as Facebook. The
+research will help us better understand what people say and what
+information people receive on social media.
 </p>
+
+<p>If you have a unique GE2017 ID number please enter it here:</p>
+
+<form id="form1" action="#">
+
+  <label for="ge2017">Your GE2017 number</label>
+  <input id="ge2017" name="ge2017" value="" />
+
+  <input type="submit" value="enter" />
+</form>
+
+
+<br/>
+<br/>
+<p>
+If you do not have a unique GE2017 ID number you are still welcome to
+participate in the research, after reading the following description of the
+project and indicating your consent for your data to be included.
+</p>
+<form id="form2" action="#">
+<div class="form-group">
+  <label>UK post code:</label>
+  <input type="text" name="postcode" />
 </div>
+
+<div class="form-group">
+  <label>Age:</label>
+  <input id="age_1" type="radio" name="age" value="18to24"/><label for="age_1">18-24</label>
+  <input id="age_2" type="radio" name="age" value="25to34"/><label for="age_2">25-34</label>
+  <input id="age_3" type="radio" name="age" value="35to44"/><label for="age_3">35-44</label>
+  <input id="age_4" type="radio" name="age" value="45to54"/><label for="age_4">45-54</label>
+  <input id="age_5" type="radio" name="age" value="55to64"/><label for="age_5">55-64</label>
+  <input id="age_6" type="radio" name="age" value="65+"/><label for="age_6">65+</label>
+</div>
+
+<div class="form-group">
+  <label>Gender:</label>
+  <input id="gender_m" type="radio" name="gender" value="m"/><label for="gender_m">male</label>
+  <input id="gender_f" type="radio" name="gender" value="f"/><label for="gender_f">female</label>
+</div>
+
+<p>
+This Chrome Extension, accesses and processes the content
+posted in an individual's Facebook newsfeed. None of the posts collected
+will be used to identify individuals in any way, and the Facebook personal
+information will be treated as confidential and not shared beyond the
+research team. Each individual's Facebook name, and any information that
+would allow a person to be identified will not be published.
+</p>
+
+<p>
+If you would like to participate in the research and allow the research
+team to access and process your Facebook newsfeed please indicate your
+consent here
+</p>
+<input id="consent" type="checkbox"><label for="consent">I agree</label>
+
+  <input required type="submit" value="enter" />
+</form>
+</form>
+
 
 </div>
 

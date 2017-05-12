@@ -71,11 +71,9 @@ img {
 
 label {
     font-weight: bold;
-    display: block;
 }
 
 input {
-    display: block;
 }
 
 input[type="checkbox"],
@@ -290,4 +288,10 @@ box-shadow: 2px 2px 8px #888;
     display: block;
 }
 
+label {
+    min-width: 8rem;
+}
+
+label+input {
+}
 
