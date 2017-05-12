@@ -93,7 +93,9 @@ input,textarea {
     padding: 0.4em;
 }
 
-input,select { }
+select {
+    padding: 0.4em;
+}
 
 
 /* form errors */
@@ -173,7 +175,7 @@ input,select { }
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
-  border: 1px solid transparent;
+  border: 1px solid #888;
   border-radius: 4px;
 }
 
@@ -190,7 +192,8 @@ a.btn {
     color: #000;
 }
 
-a.btn:hover {
+a.btn:hover,
+input.btn:hover {
     background-color: #ccc;
     text-decoration: none;
 }
@@ -289,9 +292,11 @@ box-shadow: 2px 2px 8px #888;
 }
 
 label {
-    min-width: 8rem;
+    width: 12rem;
+    display: inline-block;
 }
 
-label+input {
+input+label {
+    width: auto;
 }
 

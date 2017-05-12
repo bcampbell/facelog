@@ -9,7 +9,7 @@
 <h1>Facelog Chrome Extension</h1>
 <p>
 The FaceLog Chrome Extension is part of a research project being conducted
-by the Centre for the Study of Media, Communication and Power at Kings
+by the <a href="http://www.kcl.ac.uk/sspp/policy-institute/CMCP">Centre for the Study of Media, Communication and Power</a> at Kings
 College London, into how people use social media, such as Facebook. The
 research will help us better understand what people say and what
 information people receive on social media.
@@ -19,10 +19,10 @@ information people receive on social media.
 
 <form id="form1" action="#">
 
-  <label for="ge2017">Your GE2017 number</label>
+  <label for="ge2017">Your GE2017 number:</label>
   <input id="ge2017" name="ge2017" value="" />
 
-  <input type="submit" value="enter" />
+  <input class="btn btn-lg" type="submit" value="Participate" />
 </form>
 
 
@@ -40,13 +40,15 @@ project and indicating your consent for your data to be included.
 </div>
 
 <div class="form-group">
-  <label>Age:</label>
-  <input id="age_1" type="radio" name="age" value="18to24"/><label for="age_1">18-24</label>
-  <input id="age_2" type="radio" name="age" value="25to34"/><label for="age_2">25-34</label>
-  <input id="age_3" type="radio" name="age" value="35to44"/><label for="age_3">35-44</label>
-  <input id="age_4" type="radio" name="age" value="45to54"/><label for="age_4">45-54</label>
-  <input id="age_5" type="radio" name="age" value="55to64"/><label for="age_5">55-64</label>
-  <input id="age_6" type="radio" name="age" value="65+"/><label for="age_6">65+</label>
+  <label for="age">Age:</label>
+  <select id="age" name="age">
+  <option value="18to24"/>18-24</option>
+  <option value="25to34"/>25-34</option>
+  <option value="35to44"/>35-44</option>
+  <option value="45to54"/>45-54</option>
+  <option value="55to64"/>55-64</option>
+  <option value="65plus"/>65+</option>
+  </select>
 </div>
 
 <div class="form-group">
@@ -56,7 +58,7 @@ project and indicating your consent for your data to be included.
 </div>
 
 <p>
-This Chrome Extension, accesses and processes the content
+This Chrome Extension collects the content
 posted in an individual's Facebook newsfeed. None of the posts collected
 will be used to identify individuals in any way, and the Facebook personal
 information will be treated as confidential and not shared beyond the
@@ -67,15 +69,19 @@ would allow a person to be identified will not be published.
 <p>
 If you would like to participate in the research and allow the research
 team to access and process your Facebook newsfeed please indicate your
-consent here
+consent here:
 </p>
-<input id="consent" type="checkbox"><label for="consent">I agree</label>
-
-  <input required type="submit" value="enter" />
+<input required id="consent" type="checkbox"><label for="consent">I agree</label>
+<br/>
+<br/>
+  <input class="btn btn-lg" type="submit" value="Participate" />
 </form>
-</form>
 
-
+<br/>
+<br/>
+<p>
+You can find out more about this project at <a href="https://facelog.me">facelog.me</a>.
+</p>
 </div>
 
 </div>
