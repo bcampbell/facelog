@@ -18,48 +18,42 @@ function regUser(details) {
     req.send( JSON.stringify(details) );
 }
 
-
-
-form1.addEventListener("submit", function(ev) {
-    ev.preventDefault();
-    var user = {
-        "ipsosmori": form1.ipsosmori.value
-    };
+function doreg(form, data) {
     chrome.runtime.getBackgroundPage( function(bg) {
         var onErr = function(errmsg) {
-            console.log("ERROR: " + errmsg);
-            // TODO: show on form
+            var stat =  form.querySelector(".status");
+            stat.classList.add("alert");
+            stat.classList.add("alert-danger");
+            stat.innerHTML = errmsg;
         };
         var onSuccess = function() {
             console.log("success");
             // TODO: close tab here!
         };
 
-        bg.registerUser(user, onSuccess, onErr );
+    console.log("bing1", data);
+        bg.registerUser(data, onSuccess, onErr );
     });
+}
+
+form1.addEventListener("submit", function(ev) {
+    ev.preventDefault();
+    var data = {
+        "ge2017": form1.ge2017.value
+    };
+    doreg(form1,data);
 }, false);
 
 form2.addEventListener("submit", function(ev) {
     ev.preventDefault();
 
-    var user = {
-        "country": form2.country.value,
+    var data = {
         "postcode": form2.postcode.value,
         "age": form2.age.value,
         "gender": form2.gender.value,
     };
 
-    chrome.runtime.getBackgroundPage( function(bg) {
-        var onErr = function(errmsg) {
-            console.log("ERROR: " + errmsg);
-            // TODO: show on form
-        };
-        var onSuccess = function() {
-            console.log("success");
-            // TODO: close tab here!
-        };
-        bg.registerUser(user, onSuccess, onErr );
-    });
+    doreg(form2,data);
 }, false);
 
 })();
