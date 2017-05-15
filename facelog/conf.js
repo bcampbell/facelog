@@ -4,20 +4,6 @@ var form2 = document.getElementById("form2");
 
 
 
-function regUser(details) {
-    var req = new XMLHttpRequest();
-    req.open('POST', 'http://localhost:8080/register', true);
-    req.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    req.addEventListener("load", function(ev) {
-        console.log("sent: ", ev);
-    });
-    req.addEventListener("error", function(ev) {
-        console.log("poop: ", ev);
-    });
-    console.log("sending registration details",details);
-    req.send( JSON.stringify(details) );
-}
-
 function doreg(form, data) {
     chrome.runtime.getBackgroundPage( function(bg) {
         var onErr = function(errmsg) {
@@ -28,10 +14,9 @@ function doreg(form, data) {
         };
         var onSuccess = function() {
             console.log("success");
-            // TODO: close tab here!
+            // TODO: close tab here! or redirect to a thankyou/intro page
         };
 
-    console.log("bing1", data);
         bg.registerUser(data, onSuccess, onErr );
     });
 }

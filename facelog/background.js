@@ -16,9 +16,11 @@ chrome.storage.local.get("conf", function(items) {
 });
 
 
+// TODO: pick some reasonable alarm times (maybe 7min and something random like 17?)
 chrome.alarms.create("", {delayInMinutes: 1, periodInMinutes: 1});
 chrome.alarms.onAlarm.addListener(function (alarm) {
     console.log("BING!",alarm);
+    // TODO: check for unsent posts and call dumpToServer() here
 });
 
 
@@ -30,6 +32,11 @@ function registerUser( user, successfn, errfn ) {
     req.addEventListener("load", function(ev) {
         console.log(user,successfn, errfn);
         successfn();
+
+        // TODO: parse and store registration ID returned from the server
+        // at this point the extension should begin operating
+
+
     });
     req.addEventListener("error", function(ev) {
         errfn("network error");
@@ -38,6 +45,11 @@ function registerUser( user, successfn, errfn ) {
 }
 
 function dumpToServer() {
+    // TODO:
+    // mark uploaded posts as sent
+    // delete oldest posts when over a certain threshold
+    // need to send registration ID so server can file it properly
+
     console.log("upload...");
     chrome.storage.local.get(null, function(items) {
         var ents = [];

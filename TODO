@@ -1,8 +1,13 @@
-better handling of hyperfeeds (eg shared link with multiple content)
-better handling of timeline containers
-log number of likes/comments etc
-only log items which are visible (ie not posted which are preloaded, but offscreen)
-add a backend (background page?) to stash posts and coordinate stuff
-add a gui for browsing logged posts
-export to csv
+extension: upload stashed data to server (background.js - see dumpToServer() for partial implementation and notes)
+extension: registration - store ID assigned by server, and start recording (see conf.js)
+extension: gui page - general tidy, remove "Discard Data"
+extension: gui page - sort posts by date, newest at top
+extension: include page URL in captured post (ie which page the post appeared on)
+extension: reduce blanket access permission to facebook and facelog.me (other facebook names?)
+extension: better icon! (PNG rgba, 32x32 and 48x48)
+extension: upload to chrome store
+server: finish up registration api (assign ID, log details to list, create data dir for user)
+server: finish up storage api (dir per user, dump as csv files)
+server: set up https for everything
+server: static landing page (got copy from Martin)
 
