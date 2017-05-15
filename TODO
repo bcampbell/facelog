@@ -6,7 +6,7 @@ extension: include page URL in captured post (ie which page the post appeared on
 extension: reduce blanket access permission to facebook and facelog.me (other facebook names?)
 extension: better icon! (PNG rgba, 32x32 and 48x48)
 extension: upload to chrome store
-server: finish up registration api (assign ID, log details to list, create data dir for user)
+[DONE] server: finish up registration api (assign ID, log details to list, create data dir for user)
 server: finish up storage api (dir per user, dump as csv files)
 server: set up https for everything
 server: static landing page (got copy from Martin)
