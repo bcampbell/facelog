@@ -212,6 +212,48 @@ function scan(nod) {
 function stash(arts) {
     var foo = {};
     for( var i=0; i<arts.length; i++) {
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Facelog</title>
+        <link href="gui.css" rel="stylesheet"/>
+  </head>
+<body>
+
+<div class="page-data">
+<h1>Facelog</h1>
+<div>
+<span id="info"></span>&nbsp;&nbsp;|&nbsp;&nbsp;
+<a href="#" id="clear-button">Discard all</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+<a href="#" id="upload-button">Upload</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+<a href="export.html">Export</a> (to <code>facelog.csv</code>)
+</div>
+<br/>
+<table> 
+  <thead>
+    <tr>
+      <th>posted</th>
+      <th>desc</th>
+      <th>txt</th>
+      <th>link_url</th>
+      <th>link_title</th>
+      <th>link_desc</th>
+      <th>like</th>
+      <th>love</th>
+      <th>haha</th>
+      <th>wow</th>
+      <th>sad</th>
+      <th>angry</th>
+    </tr>
+  </thead>
+  <tbody id="post-list">
+  </tbody>
+</table>
+</div>
+<script type="text/javascript" src="mustache.js"></script>
+<script type="text/javascript" src="gui.js"></script>
+</body>
+</html>
         var art = arts[i];
         var key = "post-" + art.id;
         foo[key] = art;

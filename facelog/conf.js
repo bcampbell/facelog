@@ -13,8 +13,10 @@ function doreg(form, data) {
             stat.innerHTML = errmsg;
         };
         var onSuccess = function() {
-            console.log("success");
-            // TODO: close tab here! or redirect to a thankyou/intro page
+            // redirect to thankyou/intro page
+            chrome.tabs.getCurrent(function (tab) {
+                chrome.tabs.update(tab.id, {url: "thanks.html"});
+            });
         };
 
         bg.registerUser(data, onSuccess, onErr );

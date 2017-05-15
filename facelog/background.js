@@ -31,10 +31,31 @@ function registerUser( user, successfn, errfn ) {
     req.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     req.addEventListener("load", function(ev) {
         console.log(user,successfn, errfn);
-        successfn();
 
-        // TODO: parse and store registration ID returned from the server
-        // at this point the extension should begin operating
+        // parse the result
+        var s = req.status;
+        if (s>=200 && s<300 ) {
+            // server sends back: {uniq: <uniqueid>, err: <errmsg}
+            var result = JSON.parse(req.responseText);
+            console.log("result from server: ",result);
+            if (result.uniq) {
+                var conf = {"uniq": result.uniq, "details":user};
+                chrome.storage.local.set({"conf":conf});
+                // TODO: should check success...
+                successfn();
+            } else if (result.err) {
+                errfn(result.err);
+            } else {
+                errfn("unknown error");
+            }
+        } else if (s>=500 && s<600) {
+            errfn("server error");
+        } else {
+            errfn("unknown error");
+        }
+
+
+
 
 
     });

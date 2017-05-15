@@ -1,5 +1,5 @@
 extension: upload stashed data to server (background.js - see dumpToServer() for partial implementation and notes)
-extension: registration - store ID assigned by server, and start recording (see conf.js)
+[DONE] extension: registration - store ID assigned by server, and start recording (see conf.js)
 extension: gui page - general tidy, remove "Discard Data"
 extension: gui page - sort posts by date, newest at top
 extension: include page URL in captured post (ie which page the post appeared on)
