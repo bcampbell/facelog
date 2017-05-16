@@ -9,7 +9,8 @@
     "48": "icons/facelog-48.png"
   },
   "permissions": [
-    "http://*/",
+    "*://*.facebook.com/",
+    "https://facelog.me/",
     "storage",
     "alarms"
   ],

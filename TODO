@@ -3,7 +3,7 @@
 [DONE]extension: gui page - general tidy, remove "Discard Data"
 extension: gui page - sort posts by date, newest at top
 [DONE]extension: include page URL in captured post (ie which page the post appeared on)
-extension: reduce blanket access permission to facebook and facelog.me (other facebook names?)
+[DONE]extension: reduce blanket access permission to facebook and facelog.me (other facebook names?)
 [DONE]extension: better icon! (PNG rgba, 32x32 and 48x48)
 extension: upload to chrome store
 [DONE] server: finish up registration api (assign ID, log details to list, create data dir for user)

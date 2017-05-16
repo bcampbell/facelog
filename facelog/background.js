@@ -1,4 +1,4 @@
-var serverURL = "http://localhost:8080";
+var serverURL = "https://facelog.me";
 
 // show the gui page when the icon is pressed
 chrome.browserAction.onClicked.addListener( function() {
@@ -23,19 +23,19 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
 
 
 function registerUser( user, successfn, errfn ) {
-    console.log("register", user);
+    //console.log("register", user);
     var req = new XMLHttpRequest();
     req.open('POST', serverURL + '/api/reg', true);
     req.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     req.addEventListener("load", function(ev) {
-        console.log(user,successfn, errfn);
+        //console.log(user,successfn, errfn);
 
         // parse the result
         var s = req.status;
         if (s>=200 && s<300 ) {
             // server sends back: {uniq: <uniqueid>, err: <errmsg}
             var result = JSON.parse(req.responseText);
-            console.log("result from server: ",result);
+            //console.log("result from server: ",result);
             if (result.uniq) {
                 var conf = {"uniq": result.uniq, "details":user};
                 chrome.storage.local.set({"conf":conf});
@@ -74,7 +74,7 @@ function uploadToServer() {
         }
 
         var conf = items.conf;
-        console.log("upload...");
+        //console.log("upload...");
         chrome.storage.local.get(null, function(items) {
             var ents = [];
             for (var key in items) {
@@ -106,7 +106,7 @@ function uploadToServer() {
             req.addEventListener("load", function(ev) {
                 var s = req.status;
                 if (s>=200 && s<300 ) {
-                    console.log("upload: successfully uploaded " + ents.length + " posts");
+                    //console.log("upload: successfully uploaded " + ents.length + " posts");
                     // update the 'sent' status on uploaded posts
                     var updated = {};
                     for (var i=0; i<ents.length; ++i) {
@@ -124,7 +124,7 @@ function uploadToServer() {
                 //console.log("upload: failed");
             });
             var dat = {"uniq": conf.uniq, "posts": ents};
-            console.log("send ",dat);
+            //console.log("send ",dat);
             req.send( JSON.stringify(dat) );
 
         });
