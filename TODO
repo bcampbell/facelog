@@ -1,13 +1,13 @@
-extension: upload stashed data to server (background.js - see dumpToServer() for partial implementation and notes)
+[DONE]extension: upload stashed data to server (background.js - see dumpToServer() for partial implementation and notes)
 [DONE] extension: registration - store ID assigned by server, and start recording (see conf.js)
-extension: gui page - general tidy, remove "Discard Data"
+[DONE]extension: gui page - general tidy, remove "Discard Data"
 extension: gui page - sort posts by date, newest at top
-extension: include page URL in captured post (ie which page the post appeared on)
+[DONE]extension: include page URL in captured post (ie which page the post appeared on)
 extension: reduce blanket access permission to facebook and facelog.me (other facebook names?)
-extension: better icon! (PNG rgba, 32x32 and 48x48)
+[DONE]extension: better icon! (PNG rgba, 32x32 and 48x48)
 extension: upload to chrome store
 [DONE] server: finish up registration api (assign ID, log details to list, create data dir for user)
 server: finish up storage api (dir per user, dump as csv files)
-server: set up https for everything
+[DONE]server: set up https for everything
 server: static landing page (got copy from Martin)
 

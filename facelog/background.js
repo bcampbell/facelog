@@ -67,7 +67,6 @@ function uploadToServer() {
     // mark uploaded posts as sent
     // delete oldest posts when over a certain threshold
     // need to send registration ID so server can file it properly
-
     chrome.storage.local.get("conf", function(items) {
         if (typeof items.conf === 'undefined') {
             // not configured yet. bail out
@@ -83,19 +82,21 @@ function uploadToServer() {
                     continue;
                 }
                 var post = items[key];
-
                 // skip any already set
                 if (post.sent) {
                     continue;
                 }
+
                 ents.push(post);
                 // upper bound on posts per upload
-                if( ents.length >= 100) {
+                if( ents.length >= 500) {
                     break;
                 }
             }
             if (ents.length==0) {
                 //console.log("nothing new to upload\n");
+                // nothing to upload. A good time to do some housekeeoing...
+                tidyStore();
                 return;
             }
 
@@ -112,7 +113,8 @@ function uploadToServer() {
                         ents[i].sent = true;
                         updated["post-" + ents[i].id] = ents[i];
                     }
-                    chrome.storage.local.set(updated);
+                    chrome.storage.local.set(updated, function() {
+                    });
                 } else {
                     // http error
                     //console.log("upload: server returned status", req.status);
@@ -125,10 +127,36 @@ function uploadToServer() {
             console.log("send ",dat);
             req.send( JSON.stringify(dat) );
 
-
         });
     });
 }
 
+
+function tidyStore() {
+    chrome.storage.local.get(null, function(items) {
+            var ents = [];
+            // collect all the posts
+            for (var key in items) {
+                if (key.indexOf("post-") != 0) {
+                    continue;
+                }
+                var post = items[key];
+                ents.push(post);
+            }
+
+            // sort by seen, most recent first (ie descending)
+            ents.sort(function (a, b) {
+                  return b.seen.localeCompare(a.seen);
+            });
+
+            //
+            var cull = ents.slice(3000);
+            var remove = [];
+            for (var i=0; i<cull.length; ++i) {
+                remove.push("post-" + cull[i].id);
+            }
+            chrome.storage.local.remove(remove);
+    });
+};
 
 
