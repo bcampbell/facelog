@@ -1,12 +1,14 @@
 {
 
-  "description": "logs all facebook news items",
+  "description": "logs viewed facebook posts",
   "manifest_version": 2,
   "name": "FaceLog",
   "version": "1.0",
-  "homepage_url": "http://scumways.com",
+  "homepage_url": "https://facelog.me",
   "icons": {
+    "32": "icons/facelog-32.png"
     "48": "icons/facelog-48.png"
+    "128": "icons/facelog-128.png"
   },
   "permissions": [
     "*://*.facebook.com/",
