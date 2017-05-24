@@ -181,8 +181,10 @@ function isPeopleYouMayKnow(art) {
 function scan(nod) {
     var arts = nod.querySelectorAll('[role="article"]');
     var scraped = [];
+//    console.log("scan: ",nod, "  found: ", arts);
     for (var j=0; j<arts.length; ++j) {
         var art = arts[j];
+        //console.log("article: ",art);
         if (isPeopleYouMayKnow(art)) {
             continue;
         }
@@ -231,17 +233,21 @@ var obs = new MutationObserver(function (mutations, observer) {
     for (var i = 0; i < mutations[0].addedNodes.length; i++) {
         var nod = mutations[0].addedNodes[i];
         if (nod.nodeType == 1) {
-            scan(nod)
+            scan(nod);
         }
     }
 });
 
 
-// initial scan - find stuff already on page
-var contentArea = document.querySelector("#contentArea");
-if(contentArea!=null) {
-    scan(contentArea);
-}
+// give it a few sec before performing initial scan.
+setTimeout( function() {
+    // initial scan - find stuff already on page
+    var contentArea = document.querySelector("#contentArea, #content_container");
+    //console.log("Initial scan? contentArea: ",contentArea);
+    if(contentArea!=null) {
+        scan(contentArea);
+    }
+}, 3000 );
 
 
 // sometime (eg during redirects) we'll get a bodyless doc
